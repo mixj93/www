@@ -108,6 +108,9 @@ const WorkshopSubtitleWrap = styled.div`
   font-size: 2rem;
   line-height: 4rem;
 `
+const WorkshopDescP = styled.p`
+  margin: 0;
+`
 
 const AgendaList = () => (
   <StaticQuery
@@ -157,7 +160,13 @@ const AgendaList = () => (
                 res = (
                   <AgendaWorkshopItem key={`agenda-iterm-${gi}-${ai}`}>
                     <WorkshopTitleWrap>{title}</WorkshopTitleWrap>
-                    {workshop_desc && <WorkshopSubtitleWrap>{workshop_desc}</WorkshopSubtitleWrap>}
+                    {workshop_desc && (
+                      <WorkshopSubtitleWrap>
+                        {workshop_desc.split('\n').map((d, i) => (
+                          <WorkshopDescP key={i}>{d}</WorkshopDescP>
+                        ))}
+                      </WorkshopSubtitleWrap>
+                    )}
                   </AgendaWorkshopItem>
                 )
               }
